@@ -5,7 +5,6 @@ Git Bash
 Github desktop 설치 
 
 
-
 13.209.93.133    172.31.15.117
 15.164.136.136   172.31.0.89
 15.164.161.233   172.31.0.71
@@ -254,7 +253,15 @@ gpgcheck = 1
 
 [Install JDK]
 
-scp  -i ./SKT.pem ./jdk-8u211-linux-x64.tar.gz centos@13.209.93.133:/home/centos
+scp  -i ./SKT.pem ./jdk-8u211-linux-x64.tar.gz centos@
+
+
+
+
+
+
+
+:/home/centos
 
 tar -zxvf jdk-8u202-linux-x64.tar.gz
 mkdir /app
