@@ -40,3 +40,27 @@ TBLPROPERTIES (
  show databases;
  use test;
  select * from authors limit 10;
+ 
+ 
+## export sqoop  
+ 
+#### hive query to hdfs 
+INSERT OVERWRITE DIRECTORY '/user/training/results'
+select a.id, a.fname, a.Lname, count(a.pid)
+from (
+    select authors.id as id, authors.first_name as fname, authors.last_name as Lname, posts.id as pid
+  from authors, posts
+  where authors.id = posts.author_id
+) a
+group by a.id, a.fname, a.Lname;
+
+#### create mysql table (test.results)
+create table test.results (
+  id varchar(100)
+  , fname varchar(100)
+  , Lname varchar(100)
+  , num_posts int
+);
+
+#### hdfs to mysql (sqoop)
+sqoop export --connect jdbc:mysql://cm:3306/test --username training --password Hadoop123! --driver com.mysql.jdbc.Driver --table test.results --export-dir /user/training/results --input-fields-terminated-by '\0001'
