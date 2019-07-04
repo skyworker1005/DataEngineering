@@ -1,0 +1,30 @@
+sqoop import --connect jdbc:mysql://cm:3306/test --username training --password Hadoop123! --table authors  --driver com.mysql.jdbc.Driver --target-dir /user/training/authors
+sqoop import --connect jdbc:mysql://cm:3306/test --username training --password Hadoop123! --table posts  --driver com.mysql.jdbc.Driver --target-dir /user/training/posts --hive-import --hive-table posts
+
+
+
+CREATE External TABLE `authors`(
+  `id` int,
+  `first_name` string,
+  `last_name` string,
+  `email` string,
+  `birthdate` string,
+  `added` string)
+COMMENT 'Imported by sqoop on 2019/07/04 05:42:59'
+ROW FORMAT SERDE
+  'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+WITH SERDEPROPERTIES (
+  'field.delim'='\u0001',
+  'line.delim'='\n',
+  'serialization.format'='\u0001')
+STORED AS INPUTFORMAT
+  'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://master1.skplanet.com:8020/user/training/authors'
+TBLPROPERTIES (
+  'COLUMN_STATS_ACCURATE'='true',
+  'numFiles'='4',
+  'totalSize'='760827',
+  'transient_lastDdlTime'='1562218982')
