@@ -1,0 +1,3 @@
+val rdd = spark.read.textFile("hdfs:/user/training/yelp/business").toJSON.map(value => value.replace("dairy-free", "dairy_free").replace("gluten-free","gluten_free").replace("soy-free","soy_free")).rdd
+val df = spark.read.json(rdd)
+df.write.format("parquet").save("hdfs:/user/training/max/business_parquet3")
