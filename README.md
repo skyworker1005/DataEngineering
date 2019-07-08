@@ -4,7 +4,7 @@
     * 과정명: SK ICT Big Data Engineering 통합실습  
     * 일시: 20190703-0705
     * 강사: Helry Park (hwpark at wiken.co.kr) 
-    * Group 4: 정명훈(리더, SK planet), 전평재(SK planet), 양진욱(SK planet)
+    * Group 4: 정명훈(SK planet), 전평재(SK planet), 양진욱(SK planet)
     * 파일 구성
         BDE_1_InstallCM.md
         BDE_2_InstallSqoopSparkImpalaKafka.md
